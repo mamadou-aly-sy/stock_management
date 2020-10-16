@@ -2,11 +2,16 @@
 namespace App\Controllers;
 
 use Core\Controller;
+use Core\Session;
 
 class HomeController extends Controller
 {
-    public function index($name = null)
+    public function index()
     {
-        $this->render('home/index', compact('name'));
+        if (Session::contain('user_id')) {
+            $this->redirect('admin');
+        }
+
+        $this->render('home/home');
     }
 }
