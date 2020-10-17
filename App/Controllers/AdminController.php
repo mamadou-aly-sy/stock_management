@@ -39,6 +39,10 @@ class AdminController extends Controller
 
     public function login()
     {
+        if (Session::contain('user_id')) {
+            $this->redirect('admin/dashboard');
+        }
+
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = sha1($_POST['password']);
