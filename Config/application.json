@@ -1,5 +1,7 @@
 {
     "host": "http://localhost:3000/",
     "default_template": "default_template",
-    "views_file_extension": "html.php"
+    "views_file_extension": "html.php",
+    "default_controller": "HomeController",
+    "default_action": "index"
 }

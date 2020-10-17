@@ -9,7 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Session::contain('user_id')) {
-            $this->redirect('admin');
+            $this->redirect('admin/dashboard');
         }
 
         $this->render('home/home');

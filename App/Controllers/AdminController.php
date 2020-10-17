@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Admin;
 use App\Models\Product;
 use Core\Controller;
 use Core\Session;
@@ -15,7 +16,7 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function dashboard()
     {
         if (!Session::contain('user_id')) {
             $this->redirect('');
@@ -34,5 +35,19 @@ class AdminController extends Controller
     {
         Session::remove('user_id');
         $this->redirect('');
+    }
+
+    public function login()
+    {
+        if (isset($_POST['submit'])) {
+            $username = $_POST['username'];
+            $password = sha1($_POST['password']);
+            $user     = Admin::login($username, $password);
+            if ($user) {
+                Session::set('user_id', $user->id);
+                $this->redirect('admin/dashboard');
+            }
+        }
+        $this->render('admin/login');
     }
 }

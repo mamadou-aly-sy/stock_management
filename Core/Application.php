@@ -36,9 +36,9 @@ class Application
             $uriPattern       = explode('/', $request);
             $this->controller =
             isset($uriPattern[0]) && !empty($uriPattern[0]) ?
-            ucfirst($uriPattern[0]) . 'Controller' : 'HomeController';
+            ucfirst($uriPattern[0]) . 'Controller' : config('application.default_controller');
             $this->action =
-            isset($uriPattern[0]) && !empty($uriPattern[1]) ? $uriPattern[1] : 'index';
+            isset($uriPattern[0]) && !empty($uriPattern[1]) ? $uriPattern[1] : config('application.default_action');
             unset($uriPattern[0], $uriPattern[1]);
             $this->params = !empty($uriPattern) ? array_values($uriPattern) : [];
         }
